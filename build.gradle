@@ -25,26 +25,14 @@ repositories {
 buildscript {
 	repositories {
 		jcenter()
-		mavenCentral()
 	}
 	dependencies {
-		classpath 'org.ajoberstar:gradle-git:1.4.2'
 		classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.3'
 	}
 }
 
 dependencies {
 	compile 'net.agkn:hll:1.6.0'
-}
-
-task sourcesJar(type: Jar, dependsOn: classes) {
-	classifier = 'sources'
-	from sourceSets.main.allSource
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-	classifier = 'javadoc'
-	from javadoc.destinationDir
 }
 
 shadowJar {
@@ -57,7 +45,7 @@ artifacts {
 
 shadowJar {
 	configurations = [project.configurations.compile]
-
+	minimize()
 	/*relocate 'org.apache.commons', 'com.halogen.wowza_plugin.shadow.org.apache.commons'
 	relocate 'org.apache.tomcat', 'com.halogen.wowza_plugin.shadow.org.apache.tomcat'
 	relocate 'org.apache.http', 'com.halogen.wowza_plugin.shadow.org.apache.http'
@@ -78,6 +66,7 @@ shadowJar {
 	relocate 'org.junit', 'com.halogen.wowza_plugin.shadow.org.junit'
 	relocate 'org.hamcrest', 'com.halogen.wowza_plugin.shadow.org.hamcrest'*/
 	//exclude "it.unimi.dsi.fastutil"
-	exclude('it/unimi/dsi/fastutil/**')
-
+	//include('net/agkn/hll/**')
+	//exclude('it/unimi/dsi/fastutil/**')
+	 
 }
