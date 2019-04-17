@@ -33,6 +33,7 @@ buildscript {
 
 dependencies {
 	compile 'net.agkn:hll:1.6.0'
+	compile 'it.unimi.dsi:fastutil:8.2.2'
 }
 
 shadowJar {
